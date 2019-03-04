@@ -19,10 +19,11 @@ interface State {
 
 interface Props {
     navigateBack: any;
+    tabbarConfig: any;
     homeNavbarTypes: any;
 }
 
-export default class Win extends Component<Props, State> {
+export class Win extends Component<Props, State> {
     state: State = {
         title: '',
         isInit: false,
@@ -58,6 +59,7 @@ export default class Win extends Component<Props, State> {
                             this.onIndexChange('HomeFrameGroup', i)
                         }
                         style={this.state.tabbarStyle}
+                        config={this.props.tabbarConfig}
                     />
                 )}
             </div>
@@ -143,9 +145,9 @@ export default class Win extends Component<Props, State> {
                     });
                 }
 
-                const navbarQuery = parseUrl<NavbarFrameQuery>(
+                const navbarQuery = parseUrl(
                     location.pathname + location.search,
-                ).query;
+                ).query as any;
 
                 this.setState({ navbarQuery });
 

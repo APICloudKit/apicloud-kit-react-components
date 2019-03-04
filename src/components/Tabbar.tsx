@@ -1,12 +1,13 @@
 import { cl } from '@dingdang/util';
-import { tabbarConfig } from 'lib/constants';
-import { TabbarDiv, IconTabbar } from 'styles/components/TabbarStyled';
+// import { tabbarConfig } from ../lib/constants';
+import { TabbarDiv, IconTabbar } from '../styles/components/TabbarStyled';
 
 interface Props {
     activeIndex: number;
     onIndexChange(index: number): void;
     style: React.CSSProperties;
     isFixedBottom?: boolean;
+    config: any[];
 }
 
 export function TabbarComponent(props: Props) {
@@ -19,7 +20,7 @@ export function TabbarComponent(props: Props) {
             })}
             style={props.style}
         >
-            {tabbarConfig.map((el, index) => (
+            {props.config.map((el, index) => (
                 <div
                     className="item"
                     key={el.path}
