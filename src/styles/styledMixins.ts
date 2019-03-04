@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+export interface StyledIconProps {
+    w?: string | number;
+    h?: string | number;
+    bw?: string | number;
+    bh?: string | number;
+}
+
 export const iconStyled = (
     url: string,
     width: string | number,
