@@ -1,5 +1,4 @@
 import { cl } from '@dingdang/util';
-// import { tabbarConfig } from ../lib/constants';
 import { TabbarDiv, IconTabbar } from '../styles/components/TabbarStyled';
 
 interface Props {
@@ -8,6 +7,7 @@ interface Props {
     style: React.CSSProperties;
     isFixedBottom?: boolean;
     config: any[];
+    // @todo icon tabbar
 }
 
 export function TabbarComponent(props: Props) {
