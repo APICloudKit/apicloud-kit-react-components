@@ -14,7 +14,6 @@ type FormInputs = {
     isRemember: boolean;
 };
 interface State {
-    // envStore: akEnv.EnvStore | null;
     formInputs: FormInputs;
     style: CSSProperties;
 }
@@ -23,11 +22,11 @@ interface Props {
     isProd: boolean;
     navigateTo: any;
     projectConfig: akEnv.ProjectConfig;
+    initialPage?: string;
 }
 
 export class Root extends Component<Props, State> {
     state: State = {
-        // envStore: null,
         formInputs: {
             clientEnv: 'development',
             serverEnv: 'development',
@@ -127,7 +126,7 @@ export class Root extends Component<Props, State> {
             isRemember,
         };
         await akEnv.setEnv(envStore);
-        this.props.navigateTo('Home')();
+        this.props.navigateTo(this.props.initialPage || 'Home')();
     };
 
     handleInput = (
