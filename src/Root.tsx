@@ -113,10 +113,20 @@ export class Root extends Component<Props, State> {
                     <div className="btn">
                         <MyButton onClick={this.save}>Save & Start</MyButton>
                     </div>
+                    <div className="btn">
+                        <MyButton onClick={this.clearCache}>
+                            Clear Cache
+                        </MyButton>
+                    </div>
                 </RootStyledDiv>
             )
         );
     }
+
+    clearCache = async () => {
+        await ak.clearCache();
+        ak.toast({ msg: '清除成功！', location: 'bottom' });
+    };
 
     save = async () => {
         const { clientEnv, serverEnv, isRemember } = this.state.formInputs;

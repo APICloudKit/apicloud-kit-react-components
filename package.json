@@ -5,6 +5,9 @@
     "author": "Kai Shao",
     "license": "MIT",
     "private": false,
+    "scripts": {
+        "build": "rm -rf dist && tsc"
+    },
     "peerDependencies": {
         "immutability-helper": "3.0.0",
         "lodash": "~4.17.11",
