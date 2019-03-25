@@ -5,24 +5,15 @@ import { borderColor, primaryColor } from '../styledColors';
 interface IconTabarProps extends StyledIconProps {
     index: number;
     isActive: boolean;
+    icon: string;
+    activeIcon: string;
 }
 
 export const IconTabbar = styled.i`
     ${(p: IconTabarProps) => {
-        switch (p.index) {
-            case 1:
-                return p.isActive
-                    ? iconStyled(require('static/13@2x.png'), p.w || '', p.h)
-                    : iconStyled(require('static/12@2x.png'), p.w || '', p.h);
-            case 2:
-                return p.isActive
-                    ? iconStyled(require('static/10@2x.png'), p.w || '', p.h)
-                    : iconStyled(require('static/11@2x.png'), p.w || '', p.h);
-            case 3:
-                return p.isActive
-                    ? iconStyled(require('static/8@2x.png'), p.w || '', p.h)
-                    : iconStyled(require('static/9@2x.png'), p.w || '', p.h);
-        }
+        return p.isActive
+            ? iconStyled(p.activeIcon, p.w || '', p.h)
+            : iconStyled(p.icon, p.w || '', p.h);
     }}
 `;
 

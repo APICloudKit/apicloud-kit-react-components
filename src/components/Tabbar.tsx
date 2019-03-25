@@ -28,6 +28,8 @@ export function TabbarComponent(props: Props) {
                 >
                     <IconTabbar
                         w={45}
+                        icon={el.icon}
+                        activeIcon={el.activeIcon}
                         index={index + 1}
                         isActive={props.activeIndex === index}
                     />
