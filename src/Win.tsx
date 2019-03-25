@@ -1,6 +1,6 @@
 import { ak, Navigation, akUtil } from 'apicloud-kit-2';
 import { Component, CSSProperties } from 'react';
-import { NavbarComponent, NavbarFrameQuery } from './components/Navbar';
+import { NavbarComponent } from './components/Navbar';
 import { TabbarComponent } from './components/Tabbar';
 import { parseUrl } from '@dingdang/util';
 import debounce from 'lodash/debounce';
@@ -9,7 +9,7 @@ import { v } from './styles/styledMixins';
 interface State {
     title: string;
     isInit: boolean;
-    navbarQuery: NavbarFrameQuery | null;
+    navbarQuery: Navigation.INavbarFrameQuery | null;
     curFrameGroupIndex: number | null;
     tabbarStyle: CSSProperties;
     navbarStyle: CSSProperties;
@@ -21,6 +21,8 @@ interface Props {
     navigateBack: any;
     tabbarConfig: any;
     homeNavbarTypes: any;
+    bgColor?: string;
+    color?: string;
 }
 
 export class Win extends Component<Props, State> {
@@ -29,7 +31,6 @@ export class Win extends Component<Props, State> {
         isInit: false,
         navbarQuery: null,
         curFrameGroupIndex: null,
-
         tabbarStyle: {},
         navbarStyle: {},
         hasNavbar: true,
@@ -41,6 +42,8 @@ export class Win extends Component<Props, State> {
             <div>
                 {this.state.hasNavbar && (
                     <NavbarComponent
+                        color={this.props.color}
+                        bgColor={this.props.bgColor}
                         isInit={this.state.isInit}
                         query={this.state.navbarQuery}
                         curFrameGroupIndex={this.state.curFrameGroupIndex || 0}

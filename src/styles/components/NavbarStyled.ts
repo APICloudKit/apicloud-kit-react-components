@@ -1,9 +1,11 @@
 import styled from 'styled-components';
-import { primaryColor } from '../styledColors';
 import { flexStyled, v, iconStyled, StyledIconProps } from '../styledMixins';
 
 interface NavbarProps {
     isTransparent: boolean;
+    backgroundColor?: string;
+    color?: string;
+    bgColor?: string;
 }
 
 export const IconArrowLeftWhite = styled.i`
@@ -18,8 +20,7 @@ export const IconArrowLeftWhite = styled.i`
 `;
 
 export const NavbarFrameDiv = styled.div`
-    background-color: ${(p: NavbarProps) =>
-        p.isTransparent ? 'transparent' : primaryColor};
+    background-color: ${(p: NavbarProps) => p.bgColor || '#fff'};
     box-sizing: border-box;
     &.is-fixed {
         padding-top: 0;
@@ -43,7 +44,7 @@ export const NavbarFrameDiv = styled.div`
         }
         .center {
             font-size: ${v(36)};
-            color: #fff;
+            color: ${(p: NavbarProps) => p.color || '#000'};
             white-space: nowrap;
             opacity: ${(p: NavbarProps) => (p.isTransparent ? 0 : 1)}
         }
@@ -53,7 +54,7 @@ export const NavbarFrameDiv = styled.div`
             a {
                 text-decoration: none;
                 font-size: ${v(28)};
-                color: #fff;
+                color: ${(p: NavbarProps) => p.color || '#000'};
             }
         }
     }

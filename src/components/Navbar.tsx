@@ -5,32 +5,21 @@ import {
     IconArrowLeftWhite,
 } from '../styles/components/NavbarStyled';
 import { Link } from './Link';
-import { ak } from 'apicloud-kit-2';
-
-export interface NavbarFrameQuery {
-    type?: string;
-    title?: string;
-    pageName?: string;
-    rightText?: string;
-    height?: number;
-    hasNoBack?: boolean;
-    isTransparent?: boolean;
-    icon?: 'message';
-    isCustomizedBack?: boolean;
-    [query: string]: string | number | boolean | undefined;
-}
+import { ak, Navigation } from 'apicloud-kit-2';
 
 interface Props {
     isInit?: boolean;
     curFrameGroupIndex?: number;
-    query: NavbarFrameQuery | null;
+    query: Navigation.INavbarFrameQuery | null;
     onIndexChange?(index: number): void;
     style?: CSSProperties;
     navigateBack: any;
+    color?: string;
+    bgColor?: string;
 }
 
 export function NavbarComponent(props: Props) {
-    const { query } = props;
+    const { query, color, bgColor } = props;
 
     const rightClick = () => {};
     const onBack = () => {
@@ -40,6 +29,8 @@ export function NavbarComponent(props: Props) {
     return (
         query && (
             <NavbarFrameDiv
+                color={color}
+                bgColor={bgColor}
                 isTransparent={!!query.isTransparent}
                 className={cl({
                     'has-theme': false,
