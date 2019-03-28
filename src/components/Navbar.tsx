@@ -21,9 +21,11 @@ interface Props {
 export function NavbarComponent(props: Props) {
     const { query, color, bgColor } = props;
 
-    const rightClick = () => {};
+    const rightClick = () => {
+        ak.sendEvent('navbarEvent', { pageName: props.query!.pageName! });
+    };
     const onBack = () => {
-        ak.sendEvent('navBack');
+        // ak.sendEvent('navbarRightClick');
     };
 
     return (
