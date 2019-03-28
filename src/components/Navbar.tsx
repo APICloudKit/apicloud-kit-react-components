@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 import { cl } from '@dingdang/util';
 import {
     NavbarFrameDiv,
@@ -16,6 +16,7 @@ interface Props {
     navigateBack: any;
     color?: string;
     bgColor?: string;
+    addOn?: ReactNode;
 }
 
 export function NavbarComponent(props: Props) {
@@ -63,6 +64,7 @@ export function NavbarComponent(props: Props) {
                         )}
                     </div>
                 </div>
+                {props.addOn}
             </NavbarFrameDiv>
         )
     );

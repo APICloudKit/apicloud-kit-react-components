@@ -1,5 +1,5 @@
 import { ak, Navigation, akUtil } from 'apicloud-kit-2';
-import { Component, CSSProperties } from 'react';
+import { Component, CSSProperties, ReactNode } from 'react';
 import { NavbarComponent } from './components/Navbar';
 import { TabbarComponent } from './components/Tabbar';
 import { parseUrl } from '@dingdang/util';
@@ -23,6 +23,7 @@ interface Props {
     homeNavbarTypes: any;
     bgColor?: string;
     color?: string;
+    navbarAddOn?: ReactNode;
 }
 
 export class Win extends Component<Props, State> {
@@ -52,6 +53,7 @@ export class Win extends Component<Props, State> {
                         }
                         style={this.state.navbarStyle}
                         navigateBack={this.props.navigateBack}
+                        addOn={this.props.navbarAddOn}
                     />
                 )}
                 {this.state.hasTabbar && (
