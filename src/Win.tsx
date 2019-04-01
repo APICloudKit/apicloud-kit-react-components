@@ -166,6 +166,18 @@ export class Win extends Component<Props, State> {
                         },
                     });
                 }
+
+                // 监听 navbar 更改
+                ak.on<Navigation.NavbarQueryEvent>(
+                    'navbarQueryEvent',
+                    ({ pageName, query }) => {
+                        const { navbarQuery } = this.state;
+                        if (navbarQuery && pageName === navbarQuery.pageName) {
+                            Object.assign(navbarQuery, query);
+                            this.setState(s => ({ ...s, navbarQuery }));
+                        }
+                    },
+                );
             }
         });
     }
