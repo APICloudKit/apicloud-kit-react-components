@@ -23,7 +23,13 @@ export function NavbarComponent(props: Props) {
     const { query, color, bgColor } = props;
 
     const rightClick = () => {
-        ak.sendEvent('navbarEvent', { pageName: props.query!.pageName! });
+        const name = props.query!.pageName!;
+        ak.sendEvent('navbarEvent', { pageName: name });
+        ak.execScript({
+            name: ak.getWinName() as string,
+            frameName: name + 'Frame',
+            script: `window.AK_NAVBAR_RIGHT_CLICK && window.AK_NAVBAR_RIGHT_CLICK()`,
+        });
     };
     const onBack = () => {
         // ak.sendEvent('navbarRightClick');
