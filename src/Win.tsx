@@ -24,6 +24,7 @@ interface Props {
     bgColor?: string;
     color?: string;
     navbarAddOn?: ReactNode;
+    defaultNavbarStyle?: 'dark' | 'light';
 }
 
 export class Win extends Component<Props, State> {
@@ -99,7 +100,9 @@ export class Win extends Component<Props, State> {
                     statusBarStyle,
                 } = pageParam;
 
-                ak.setStatusBarStyle(statusBarStyle ? statusBarStyle : 'dark');
+                ak.setStatusBarStyle(
+                    statusBarStyle || this.props.defaultNavbarStyle || 'dark',
+                );
 
                 // 设置网页的 title
                 this.setState({
