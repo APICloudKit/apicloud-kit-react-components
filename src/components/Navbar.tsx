@@ -31,8 +31,14 @@ export function NavbarComponent(props: Props) {
             script: `window.AK_NAVBAR_RIGHT_CLICK && window.AK_NAVBAR_RIGHT_CLICK()`,
         });
     };
+
     const onBack = () => {
-        // ak.sendEvent('navbarRightClick');
+        const name = props.query!.pageName!;
+        ak.execScript({
+            name: ak.getWinName() as string,
+            frameName: name + 'Frame',
+            script: `window.AK_NAVBAR_BACK && window.AK_NAVBAR_BACK()`,
+        });
     };
 
     return (
