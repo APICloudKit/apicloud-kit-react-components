@@ -97,6 +97,7 @@ export class Win extends Component<Props, State> {
                     hasNavbar,
                     hasTabbar,
                     cannotClose,
+                    isClickBackToLauncher,
                     statusBarStyle,
                 } = pageParam;
 
@@ -111,9 +112,26 @@ export class Win extends Component<Props, State> {
                     hasTabbar,
                 });
 
-                // 处理禁用返回的窗口
-                if (cannotClose && ak.getSystemType() === 'android') {
-                    ak.on('keyback', () => {});
+                if (ak.getSystemType() === 'android') {
+                    if (isClickBackToLauncher) {
+                        let keyBackFlag = false;
+                        ak.on<any>('keyback', () => {
+                            if (!keyBackFlag) {
+                                ak.toast({
+                                    msg: '再按一次退出',
+                                    location: 'bottom',
+                                });
+                                keyBackFlag = true;
+                                setTimeout(() => (keyBackFlag = false), 1000);
+                            } else {
+                                ak.toLauncher();
+                            }
+                        });
+                    }
+                    // 处理禁用返回的窗口
+                    else if (cannotClose) {
+                        ak.on('keyback', () => {});
+                    }
                 }
 
                 if (frames) {

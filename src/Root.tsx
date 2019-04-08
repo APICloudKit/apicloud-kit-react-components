@@ -136,7 +136,7 @@ export class Root extends Component<Props, State> {
             isRemember,
         };
         await akEnv.setEnv(envStore);
-        this.props.navigateTo(this.props.initialPage || 'Home')();
+        this.props.navigateTo(this.props.initialPage || 'NewHome')();
     };
 
     handleInput = (
@@ -189,6 +189,19 @@ export class Root extends Component<Props, State> {
 
             this.addListenerToWindowChange();
 
+            if (this.props.isProd) {
+                const { isRemember } = this.state.formInputs;
+                const envStore: akEnv.EnvStore = {
+                    client: 'package',
+                    server: 'production',
+                    isRemember,
+                };
+                await akEnv.setEnv(envStore);
+                return this.props.navigateTo(
+                    this.props.initialPage || 'NewHome',
+                )();
+            }
+
             // env
             let envStore = await akEnv.getEnv();
             let formInputs: FormInputs;
@@ -198,7 +211,7 @@ export class Root extends Component<Props, State> {
                 const { client, server, isRemember } = envStore;
                 if (isRemember) {
                     // 直接跳转;
-                    return this.props.navigateTo('Home')();
+                    return this.props.navigateTo('NewHome')();
                 }
                 formInputs = {
                     clientEnv: client,
